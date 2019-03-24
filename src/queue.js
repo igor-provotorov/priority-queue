@@ -10,13 +10,32 @@ class PriorityQueue {
     this.heap = new MaxHeap();
   }
 
-  push(data, priority) {}
+  push(data, priority) {
+    var maxSize = this.maxSize;
+    if (this.size() < this.maxSize) {
+      this.heap.push(data, priority);
+    } else {
+      throw "Can't add element to queue. The queue has max size (" +
+        maxSize +
+        ' elements)';
+    }
+  }
 
-  shift() {}
+  shift() {
+    if (!this.isEmpty()) {
+      return this.heap.pop();
+    } else {
+      throw "Shift operation wasn't done. The queue is empty.";
+    }
+  }
 
-  size() {}
+  size() {
+    return this.heap.size();
+  }
 
-  isEmpty() {}
+  isEmpty() {
+    return this.heap.isEmpty();
+  }
 }
 
 module.exports = PriorityQueue;
